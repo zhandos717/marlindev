@@ -1,5 +1,5 @@
 <?
-include_once 'src/functions/authorization.php';
+include_once 'src/functions/main.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,14 +47,14 @@ include_once 'src/functions/authorization.php';
                     <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
                 </div>
             <? endif; ?>
-            <form action="">
+            <form action="/src/login.php" method="POST">
                 <div class="form-group">
                     <label class="form-label" for="username">Email</label>
-                    <input type="email" id="username" class="form-control" placeholder="Эл. адрес" value="">
+                    <input type="email" name="email" id="username" class="form-control" placeholder="Эл. адрес" value="">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="password">Пароль</label>
-                    <input type="password" id="password" class="form-control" placeholder="">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Пароль">
                 </div>
                 <div class="form-group text-left">
                     <div class="custom-control custom-checkbox">

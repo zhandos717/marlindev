@@ -1,5 +1,5 @@
 <?
-include_once 'src/functions/authorization.php';
+include_once 'src/functions/main.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,13 +65,13 @@ include_once 'src/functions/authorization.php';
                             <div class="col-xl-6 ml-auto mr-auto">
                                 <div class="card p-4 rounded-plus bg-faded">
 
-                                    <? if($_SESSION['error']): ?>
-                                    <div class="alert alert-danger text-dark" role="alert">
-                                        <strong>Уведомление!</strong> <span><? display_flash_message('error')?></span>
-                                    </div>
+                                    <? if ($_SESSION['error']) : ?>
+                                        <div class="alert alert-danger text-dark" role="alert">
+                                            <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
+                                        </div>
                                     <? endif; ?>
 
-                                    <form id="js-login" novalidate="" method="POST" action="/src/register.php">
+                                    <form id="js-login" novalidate="" method="POST" action="/src/registration_processing.php">
                                         <div class="form-group">
                                             <label class="form-label" for="emailverify">Email</label>
                                             <input type="email" name="email" id="emailverify" class="form-control" placeholder="Эл. адрес" required>

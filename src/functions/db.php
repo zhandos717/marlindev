@@ -1,5 +1,5 @@
 <?php
-    session_start();
+   
     /**
      * Description: Подключение к базе данных
      * @return  PDO 

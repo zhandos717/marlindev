@@ -1,5 +1,6 @@
-<?php 
-    include_once 'functions/authorization.php';
+<?php
+    include_once 'functions/main.php';
+    include_once 'functions/register.php';
 
     if(get_user_by_email($_POST['email'])){
         set_flash_message('error', 'Этот эл. адрес уже занят другим пользователем.');
