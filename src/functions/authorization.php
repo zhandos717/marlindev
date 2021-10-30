@@ -1,5 +1,4 @@
 <?php
-    include_once 'functions/main.php';
     include_once 'db.php';
 /**
  * Description: поиск пользователя по эл. адресу
@@ -9,9 +8,7 @@
  */
 function login(string $email, string $password)
 {
-    $sql = "SELECT email, password  FROM users WHERE email=:email LIMIT 1";
-    $params = ['email' => $email];
-    $result = query($sql, $params)->fetch(PDO::FETCH_ASSOC);
+    $result = get_user_by_email($email);;
 
     if(empty($result)) {
         set_flash_message('error', 'Пользыватель не найден!');
