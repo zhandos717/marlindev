@@ -5,7 +5,7 @@
  * Description: поиск пользователя по эл. адресу
  * @param string $email
  * @param string $password
- * @return array 
+ * @return bool 
  */
 function login(string $email, string $password)
 {
