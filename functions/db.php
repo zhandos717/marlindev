@@ -21,7 +21,8 @@
  * @return  mixed
  */
 
-    function query(string $sql, array $params) {
+    function query(string $sql, array $params)
+    {
         $pdo = dbh();
         $stmt = $pdo->prepare($sql);
         if (!empty($params)) {

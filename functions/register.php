@@ -6,7 +6,7 @@ include_once 'db.php';
  * @param string $password
  * @return int user id 
  */
-function add_user($email, $password)
+function add_user(string $email, string $password): int
 {
     $sql = "INSERT INTO `users`(email, password) VALUES (:email, :password)";
     $params = [
