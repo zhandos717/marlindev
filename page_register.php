@@ -71,7 +71,7 @@ include_once 'src/functions/main.php';
                                         </div>
                                     <? endif; ?>
 
-                                    <form id="js-login" novalidate="" method="POST" action="/src/registration_processing.php">
+                                    <form id="js-login" novalidate="" method="POST" action="register.php">
                                         <div class="form-group">
                                             <label class="form-label" for="emailverify">Email</label>
                                             <input type="email" name="email" id="emailverify" class="form-control" placeholder="Эл. адрес" required>

@@ -1,11 +1,15 @@
 <?php
-    session_start();
-    /**
+session_start();
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+/**
      * Description: получить пользователя по электронной почте
      * @param string $email
      * @return array 
      */
-    function get_user_by_email(string $email): array
+    function get_user_by_email(string $email)
     {
         $sql = "SELECT * FROM users WHERE email=:email LIMIT 1";
         $params = ['email' => $email];
@@ -44,4 +48,17 @@
         header('Location: /' . $path . '.php');
         exit;
     }
-    
+    /**
+     * Description: Проверка авторизации пользователя
+     * @param string $path
+     * @return bool 
+     */
+    function is_not_logged_in():bool
+    {
+        if(!isset($_SESSION['user']))
+        { 
+            return true;
+        }
+
+        return false;
+    }

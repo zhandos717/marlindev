@@ -1,12 +1,13 @@
 <?php
 include_once 'functions/main.php';
-  if(is_not_logged_in()){
-    redirect_to('login');
-  }
+if (is_not_logged_in()) {
+    redirect_to('page_login');
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>

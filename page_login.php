@@ -1,5 +1,5 @@
 <?
-include_once 'src/functions/main.php';
+include_once 'functions/main.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,12 +42,13 @@ include_once 'src/functions/main.php';
                 <div class="alert alert-success">
                     <strong>Уведомление!</strong> <span><? display_flash_message('success') ?></span>
                 </div>
-            <? elseif ($_SESSION['error']) : ?>
+            <? endif;
+                if ($_SESSION['error']) : ?>
                 <div class="alert alert-danger text-dark" role="alert">
                     <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
                 </div>
             <? endif; ?>
-            <form action="/src/login.php" method="POST">
+            <form action="login.php" method="POST">
                 <div class="form-group">
                     <label class="form-label" for="username">Email</label>
                     <input type="email" name="email" id="username" class="form-control" placeholder="Эл. адрес" value="">
