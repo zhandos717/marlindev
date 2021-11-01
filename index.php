@@ -73,7 +73,39 @@ $users = get_users();
             </div>
         </div>
         <div class="row" id="js-contacts">
-            <? foreach ($users as $user) :?>
+
+            <pre>
+            <?
+
+            $array = ['phone' => '89999', 'username' => '89999', 'job' => '89999', 'address' => '89999', 'vk' => '89999'];
+
+            // $i = 0;
+            // echo count($array);
+            foreach ($array as $item => $key) {
+                $i++;
+                $params .= "$item = :$item";
+                $params .= $i > 0 ? ',' : '';
+            }
+            echo $params;
+            $params = '';
+            $keys = array_keys($array);
+            $count = count($keys);
+            for ($i = 0; $i < $count; ++$i) {
+                $params .= $keys[$i] . '= :' . $keys[$i];
+                if ($count - 1 != $i) {
+                    $params .=  ',';
+                }
+            }
+            echo $params;
+            echo '<br>';
+            echo $count;
+            // $string = implode(':,', $keys);
+            //   echo $string;
+            ?>
+        </pre>
+
+
+            <? foreach ($users as $user) : ?>
                 <div class="col-xl-4">
                     <div id="c_8" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="arica grace">
                         <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
