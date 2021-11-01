@@ -3,7 +3,7 @@ session_start();
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-include_once 'db.php';
+
 /**
      * Description: получить пользователя по электронной почте
      * @param string $email
@@ -13,8 +13,8 @@ include_once 'db.php';
     {
         $sql = "SELECT * FROM users WHERE email=:email LIMIT 1";
         $params = ['email' => $email];
-        $user = query($sql, $params)->fetch(PDO::FETCH_ASSOC);
-        return $user;
+        $result = query($sql, $params)->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
     /**
      * Description: Вывести флеш сообщение
@@ -61,26 +61,4 @@ include_once 'db.php';
         }
 
         return false;
-    }
-    /**
-     * Description: Получить всех пользователей
-     * @param int $id_user
-     * @return array  user
-     */
-    function get_user_by_id(int $id_user)
-    {
-        $sql = "SELECT * FROM users WHERE id=:id LIMIT 1";
-        $params = ['id' => $id_user];
-        return query($sql, $params)->fetch(PDO::FETCH_ASSOC);;
-    }
-    /**
-     * Description: Получить всех пользователей
-     * @param null
-     * @return array  users
-     */
-    function get_users()
-    {
-        $pdo = dbh();
-        $sql = "SELECT * FROM users";
-        return $pdo->query($sql);
     }

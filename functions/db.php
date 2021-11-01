@@ -13,12 +13,14 @@
         ];
         return new PDO($dsn, 's747191p_dos', 'RR1bk1w*', $opt);
     }
-    /**
-     * Description: Запись в базу данных
-     * @param string $sql
-     * @param array $params
-     * @return  mixed
-     */
+
+/**
+ * Description: Запись в базу данных
+ * @param string $sql
+ * @param array $params
+ * @return  mixed
+ */
+
     function query(string $sql, array $params)
     {
         $pdo = dbh();
@@ -36,26 +38,5 @@
         $stmt->execute();
         return $stmt;
     }
-    /**
-     * Description: Обновление данных по  айди
-     * @param string $table_name
-     * @param array $params
-     * @return object
-     */
-        function update_by_id(string $table_name,array $params)
-        {
-            $fields = '';
-            $params2= $params;
-            unset($params2['id']);
-            $keys = array_keys($params2);
-            $count = count($keys);
-            for ($i = 0; $i < $count; ++$i) {
-                $fields .= $keys[$i] . '= :' . $keys[$i];
-                if ($count - 1 != $i) {
-                    $fields .=  ',';
-                }
-            }
-            $sql = "UPDATE $table_name  SET $fields  WHERE id = :id ";
-            $params = array_merge($params,['id'=>$params['id']]);
-            return query($sql, $params);
-        }
+
+?>

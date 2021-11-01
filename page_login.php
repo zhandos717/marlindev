@@ -43,7 +43,11 @@ include_once 'functions/main.php';
                     <strong>Уведомление!</strong> <span><? display_flash_message('success') ?></span>
                 </div>
             <? endif;
+<<<<<<< HEAD
                 if (isset($_SESSION['error'])) : ?>
+=======
+                if ($_SESSION['error']) : ?>
+>>>>>>> bad6d801359c0453838828296ab7354d35e27d04
                 <div class="alert alert-danger text-dark" role="alert">
                     <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
                 </div>
