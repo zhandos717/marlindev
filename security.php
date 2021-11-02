@@ -1,3 +1,10 @@
+<?
+include_once 'functions/main.php';
+if (is_not_logged_in()) {
+    redirect_to('page_login');
+}
+$user = get_user_by_id($_GET['id']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,12 +31,15 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="page_login.php">Войти</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
-                </li>
+                <? if (is_not_logged_in()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page_login.php">Войти</a>
+                    </li>
+                <? else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Выйти</a>
+                    </li>
+                <? endif; ?>
             </ul>
         </div>
     </nav>
@@ -38,9 +48,18 @@
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-lock'></i> Безопасность
             </h1>
-
         </div>
-        <form action="">
+        <? if (isset($_SESSION['success'])) : ?>
+            <div class="alert alert-success">
+                <strong>Уведомление!</strong> <span><? display_flash_message('success') ?></span>
+            </div>
+        <? endif;
+        if (isset($_SESSION['error'])) : ?>
+            <div class="alert alert-danger text-dark" role="alert">
+                <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
+            </div>
+        <? endif; ?>
+        <form action="edit_user.php" method="POST">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -48,65 +67,37 @@
                             <div class="panel-hdr">
                                 <h2>Обновление эл. адреса и пароля</h2>
                             </div>
-                            <form action="edit_user.php">
-                                <div class="panel-content">
-                                    <!-- email -->
-                                    <div class="form-group">
-                                        <label class="form-label" for="simpleinput">Email</label>
-                                        <input type="text" name="email" id="simpleinput" class="form-control" value="john@example.com">
-                                    </div>
 
-                                    <!-- password -->
-                                    <div class="form-group">
-                                        <label class="form-label" for="simpleinput">Пароль</label>
-                                        <input type="password" name="password" id="simpleinput" class="form-control">
-                                    </div>
-
-                                    <!-- password confirmation-->
-                                    <div class="form-group">
-                                        <label class="form-label" for="simpleinput">Подтверждение пароля</label>
-                                        <input type="password" name="password" id="simpleinput" class="form-control">
-                                    </div>
-
-
-                                    <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                        <button class="btn btn-warning">Изменить</button>
-                                    </div>
+                            <input type="text" name="id" value="<?= $user['id'] ?>" hidden>
+                            <div class="panel-content">
+                                <!-- email -->
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="text" name="email" id="email" class="form-control" value="<?= $user['email'] ?>">
                                 </div>
-                            </form>
-                        </div>
+                                <!-- password -->
+                                <div class="form-group">
+                                    <label class="form-label" for="password">Пароль</label>
+                                    <input type="password" name="password" id="password" class="form-control">
+                                </div>
+                                <!-- password confirmation-->
+                                <div class="form-group">
+                                    <label class="form-label" for="password2">Подтверждение пароля</label>
+                                    <input type="password" name="password2" id="password2" class="form-control">
+                                </div>
+                                <div class="col-md-12 mt-3 d-flex flex-row-reverse">
+                                    <button type="submit" class="btn btn-warning">Изменить</button>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
     </main>
-
     <script src="/public/js/vendors.bundle.js"></script>
     <script src="/public/js/app.bundle.js"></script>
-    <script>
-        $(document).ready(function() {
-
-            $('input[type=radio][name=contactview]').change(function() {
-                if (this.value == 'grid') {
-                    $('#js-contacts .card').removeClassPrefix('mb-').addClass('mb-g');
-                    $('#js-contacts .col-xl-12').removeClassPrefix('col-xl-').addClass('col-xl-4');
-                    $('#js-contacts .js-expand-btn').addClass('d-none');
-                    $('#js-contacts .card-body + .card-body').addClass('show');
-
-                } else if (this.value == 'table') {
-                    $('#js-contacts .card').removeClassPrefix('mb-').addClass('mb-1');
-                    $('#js-contacts .col-xl-4').removeClassPrefix('col-xl-').addClass('col-xl-12');
-                    $('#js-contacts .js-expand-btn').removeClass('d-none');
-                    $('#js-contacts .card-body + .card-body').removeClass('show');
-                }
-
-            });
-
-            //initialize filter
-            initApp.listFilter($('#js-contacts'), $('#js-filter-contacts'));
-        });
-    </script>
 </body>
 
 </html>

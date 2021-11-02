@@ -7,6 +7,7 @@ $users = get_users();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -23,7 +24,7 @@ $users = get_users();
 
 <body class="mod-bg-1 mod-nav-link">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
-        <a class="navbar-brand d-flex align-items-center fw-500" href="users.html"><img alt="logo" class="d-inline-block align-top mr-2" src="/public/img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+        <a class="navbar-brand d-flex align-items-center fw-500" href="users.php"><img alt="logo" class="d-inline-block align-top mr-2" src="/public/img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -37,7 +38,7 @@ $users = get_users();
                     </li>
                 <? else : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Выйти</a>
+                        <a class="nav-link" href="logout.php">Выйти</a>
                     </li>
                 <? endif; ?>
             </ul>
@@ -45,9 +46,18 @@ $users = get_users();
     </nav>
 
     <main id="js-page-content" role="main" class="page-content mt-3">
-        <div class="alert alert-success">
-            Профиль успешно обновлен.
-        </div>
+
+        <? if (isset($_SESSION['success'])) : ?>
+            <div class="alert alert-success">
+                <strong>Уведомление!</strong> <span><? display_flash_message('success') ?></span>
+            </div>
+        <? endif;
+        if (isset($_SESSION['error'])) : ?>
+            <div class="alert alert-danger text-dark" role="alert">
+                <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
+            </div>
+        <? endif; ?>
+
         <div class="subheader">
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-users'></i> Список пользователей
@@ -55,7 +65,7 @@ $users = get_users();
         </div>
         <div class="row">
             <div class="col-xl-12">
-                <? if ($_SESSION['user']['role'] == 'admin') : ?>
+                <? if ($_SESSION['user']['role'] == 1) : ?>
                     <a class="btn btn-success" href="create_user.php">Добавить</a>
                 <? endif; ?>
                 <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
@@ -72,13 +82,13 @@ $users = get_users();
             </div>
         </div>
         <div class="row" id="js-contacts">
-            <? foreach ($users as $user) :?>
+            <? foreach ($users as $user) : ?>
                 <div class="col-xl-4">
                     <div id="c_8" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="arica grace">
                         <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
                             <div class="d-flex flex-row align-items-center">
                                 <span class="status status-success mr-3">
-                                    <span class="rounded-circle profile-image d-block " style="background-image:url('/public/img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+                                    <span class="rounded-circle profile-image d-block " style="background-image:url('/<?= $user['avatar']; ?>'); background-size: cover;"></span>
                                 </span>
                                 <div class="info-card-text flex-1">
                                     <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
@@ -90,13 +100,13 @@ $users = get_users();
                                         <a class="dropdown-item" href="edit.php?id=<?= $user['id']; ?>">
                                             <i class="fa fa-edit"></i>
                                             Редактировать</a>
-                                        <a class="dropdown-item" href="security.php">
+                                        <a class="dropdown-item" href="security.php?id=<?= $user['id']; ?>">
                                             <i class="fa fa-lock"></i>
                                             Безопасность</a>
-                                        <a class="dropdown-item" href="status.php">
+                                        <a class="dropdown-item" href="status.php?id=<?= $user['id']; ?>">
                                             <i class="fa fa-sun"></i>
                                             Установить статус</a>
-                                        <a class="dropdown-item" href="media.php">
+                                        <a class="dropdown-item" href="media.php?id=<?= $user['id']; ?>">
                                             <i class="fa fa-camera"></i>
                                             Загрузить аватар
                                         </a>
@@ -141,7 +151,7 @@ $users = get_users();
         </div>
     </main>
     <!-- BEGIN Page Footer -->
-    <footer class="page-footer" role="contentinfo">
+    <!-- <footer class="page-footer" role="contentinfo">
         <div class="d-flex align-items-center flex-1 text-muted">
             <span class="hidden-md-down fw-700">2020 © Учебный проект</span>
         </div>
@@ -151,7 +161,7 @@ $users = get_users();
                 <li class="pl-3"><a href="info_app_licensing.html" class="text-secondary fw-700">About</a></li>
             </ul>
         </div>
-    </footer>
+    </footer> -->
 </body>
 <script src="/public/js/vendors.bundle.js"></script>
 <script src="/public/js/app.bundle.js"></script>

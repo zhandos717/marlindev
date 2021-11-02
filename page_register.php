@@ -1,5 +1,5 @@
 <?
-include_once 'src/functions/main.php';
+include_once 'functions/main.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,13 +64,11 @@ include_once 'src/functions/main.php';
                             </div>
                             <div class="col-xl-6 ml-auto mr-auto">
                                 <div class="card p-4 rounded-plus bg-faded">
-
-                                    <? if ($_SESSION['error']) : ?>
+                                    <? if (isset($_SESSION['error'])) : ?>
                                         <div class="alert alert-danger text-dark" role="alert">
                                             <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
                                         </div>
                                     <? endif; ?>
-
                                     <form id="js-login" novalidate="" method="POST" action="register.php">
                                         <div class="form-group">
                                             <label class="form-label" for="emailverify">Email</label>

@@ -3,13 +3,8 @@ include_once 'functions/main.php';
 if (is_not_logged_in()) {
     redirect_to('page_login');
 }
-<<<<<<< HEAD
 $users = get_users();
 ?>
-=======
-?>
-
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,27 +32,15 @@ $users = get_users();
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-<<<<<<< HEAD
                 <? if (is_not_logged_in()) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="page_login.php">Войти</a>
                     </li>
                 <? else : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Выйти</a>
+                        <a class="nav-link" href="logout.php">Выйти</a>
                     </li>
                 <? endif; ?>
-=======
-
-                <li class="nav-item">
-                    <a class="nav-link" href="page_login.php">Войти</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
-                </li>
-
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
             </ul>
         </div>
     </nav>
@@ -73,14 +56,9 @@ $users = get_users();
         </div>
         <div class="row">
             <div class="col-xl-12">
-<<<<<<< HEAD
                 <? if ($_SESSION['user']['role'] == 'admin') : ?>
                     <a class="btn btn-success" href="create_user.php">Добавить</a>
                 <? endif; ?>
-=======
-                <a class="btn btn-success" href="create_user.php">Добавить</a>
-
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
                 <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
                     <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
                     <div class="btn-group btn-group-lg btn-group-toggle hidden-lg-down ml-3" data-toggle="buttons">
@@ -95,39 +73,6 @@ $users = get_users();
             </div>
         </div>
         <div class="row" id="js-contacts">
-<<<<<<< HEAD
-
-            <pre>
-            <?
-
-            $array = ['phone' => '89999', 'username' => '89999', 'job' => '89999', 'address' => '89999', 'vk' => '89999'];
-
-            // $i = 0;
-            // echo count($array);
-            foreach ($array as $item => $key) {
-                $i++;
-                $params .= "$item = :$item";
-                $params .= $i > 0 ? ',' : '';
-            }
-            echo $params;
-            $params = '';
-            $keys = array_keys($array);
-            $count = count($keys);
-            for ($i = 0; $i < $count; ++$i) {
-                $params .= $keys[$i] . '= :' . $keys[$i];
-                if ($count - 1 != $i) {
-                    $params .=  ',';
-                }
-            }
-            echo $params;
-            echo '<br>';
-            echo $count;
-            // $string = implode(':,', $keys);
-            //   echo $string;
-            ?>
-        </pre>
-
-
             <? foreach ($users as $user) : ?>
                 <div class="col-xl-4">
                     <div id="c_8" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="arica grace">
@@ -189,81 +134,13 @@ $users = get_users();
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </div>
-=======
-            <div class="col-xl-4">
-                <div id="c_8" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="arica grace">
-                    <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
-                        <div class="d-flex flex-row align-items-center">
-                            <span class="status status-success mr-3">
-                                <span class="rounded-circle profile-image d-block " style="background-image:url('/public/img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
-                            </span>
-                            <div class="info-card-text flex-1">
-                                <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
-                                    Arica Grace
-                                    <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
-                                    <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="edit.php">
-                                        <i class="fa fa-edit"></i>
-                                        Редактировать</a>
-                                    <a class="dropdown-item" href="security.php">
-                                        <i class="fa fa-lock"></i>
-                                        Безопасность</a>
-                                    <a class="dropdown-item" href="status.php">
-                                        <i class="fa fa-sun"></i>
-                                        Установить статус</a>
-                                    <a class="dropdown-item" href="media.php">
-                                        <i class="fa fa-camera"></i>
-                                        Загрузить аватар
-                                    </a>
-                                    <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
-                                        <i class="fa fa-window-close"></i>
-                                        Удалить
-                                    </a>
-                                </div>
-                                <span class="text-truncate text-truncate-xl">Accounting, Gotbootstrap Inc.</span>
-                            </div>
-                            <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse" data-target="#c_8 > .card-body + .card-body" aria-expanded="false">
-                                <span class="collapsed-hidden">+</span>
-                                <span class="collapsed-reveal">-</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body p-0 collapse show">
-                        <div class="p-3">
-                            <a href="tel:+13174562564" class="mt-1 d-block fs-sm fw-400 text-dark">
-                                <i class="fas fa-mobile-alt text-muted mr-2"></i> +1 313-779-3347</a>
-                            <a href="mailto:oliver.kopyov@smartadminwebapp.com" class="mt-1 d-block fs-sm fw-400 text-dark">
-                                <i class="fas fa-mouse-pointer text-muted mr-2"></i> arica.grace@smartadminwebapp.com</a>
-                            <address class="fs-sm fw-400 mt-4 text-muted">
-                                <i class="fas fa-map-pin mr-2"></i> 798 Smyth Rd, Detroit, MI, 48341, USA
-                            </address>
-                            <div class="d-flex flex-row">
-                                <a href="javascript:void(0);" class="mr-2 fs-xxl" style="color:#4680C2">
-                                    <i class="fab fa-vk"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="mr-2 fs-xxl" style="color:#38A1F3">
-                                    <i class="fab fa-telegram"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="mr-2 fs-xxl" style="color:#E1306C">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
                             </div>
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
             <? endforeach; ?>
         </div>
     </main>
-=======
-            </div>
-        </div>
-    </main>
-
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
     <!-- BEGIN Page Footer -->
     <footer class="page-footer" role="contentinfo">
         <div class="d-flex align-items-center flex-1 text-muted">
@@ -276,13 +153,7 @@ $users = get_users();
             </ul>
         </div>
     </footer>
-<<<<<<< HEAD
 </body>
-=======
-
-</body>
-
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
 <script src="/public/js/vendors.bundle.js"></script>
 <script src="/public/js/app.bundle.js"></script>
 <script>

@@ -1,5 +1,13 @@
+<?
+include_once 'functions/main.php';
+if (is_not_logged_in()) {
+    redirect_to('page_login');
+}
+$user = get_user_by_id($_GET['id']);
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -12,9 +20,10 @@
     <link rel="stylesheet" media="screen, print" href="/public/css/fa-solid.css">
     <link rel="stylesheet" media="screen, print" href="/public/css/fa-brands.css">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
-        <a class="navbar-brand d-flex align-items-center fw-500" href="users.php"><img alt="logo" class="d-inline-block align-top mr-2" src="img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+        <a class="navbar-brand d-flex align-items-center fw-500" href="users.php"><img alt="logo" class="d-inline-block align-top mr-2" src="/public/img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -22,12 +31,15 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="page_login.php">Войти</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
-                </li>
+                <? if (is_not_logged_in()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="page_login.php">Войти</a>
+                    </li>
+                <? else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Выйти</a>
+                    </li>
+                <? endif; ?>
             </ul>
         </div>
     </nav>
@@ -36,9 +48,9 @@
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-sun'></i> Установить статус
             </h1>
-
         </div>
-        <form action="">
+        <form action="edit_user.php" method="POST">
+            <input type="text" name="id" value="<?= $user['id'] ?>" hidden>
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -52,7 +64,8 @@
                                         <!-- status -->
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
-                                            <select class="form-control" id="example-select">
+                                            <select class="form-control" name="status" id="example-select">
+                                                <option><?= $user['status'] ?></option>
                                                 <option>Онлайн</option>
                                                 <option>Отошел</option>
                                                 <option>Не беспокоить</option>
@@ -60,49 +73,19 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                        <button class="btn btn-warning">Set Status</button>
+                                        <button type="submit" class="btn btn-warning">Установить статус</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </form>
     </main>
-
     <script src="/public/js/vendors.bundle.js"></script>
     <script src="/public/js/app.bundle.js"></script>
-    <script>
-
-        $(document).ready(function()
-        {
-
-            $('input[type=radio][name=contactview]').change(function()
-                {
-                    if (this.value == 'grid')
-                    {
-                        $('#js-contacts .card').removeClassPrefix('mb-').addClass('mb-g');
-                        $('#js-contacts .col-xl-12').removeClassPrefix('col-xl-').addClass('col-xl-4');
-                        $('#js-contacts .js-expand-btn').addClass('d-none');
-                        $('#js-contacts .card-body + .card-body').addClass('show');
-
-                    }
-                    else if (this.value == 'table')
-                    {
-                        $('#js-contacts .card').removeClassPrefix('mb-').addClass('mb-1');
-                        $('#js-contacts .col-xl-4').removeClassPrefix('col-xl-').addClass('col-xl-12');
-                        $('#js-contacts .js-expand-btn').removeClass('d-none');
-                        $('#js-contacts .card-body + .card-body').removeClass('show');
-                    }
-
-                });
-
-                //initialize filter
-                initApp.listFilter($('#js-contacts'), $('#js-filter-contacts'));
-        });
-
-    </script>
 </body>
+
 </html>
