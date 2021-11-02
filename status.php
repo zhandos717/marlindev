@@ -4,6 +4,14 @@ if (is_not_logged_in()) {
     redirect_to('page_login');
 }
 $user = get_user_by_id($_GET['id']);
+
+$selected = [
+    'Онлайн',
+    'Отошел',
+    'Не беспокоить'
+];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,10 +73,10 @@ $user = get_user_by_id($_GET['id']);
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
                                             <select class="form-control" name="status" id="example-select">
-                                                <? if(isset($user['status'])): ?> <option><?= $user['status'] ?></option> <?endif;?>
-                                                <option>Онлайн</option>
-                                                <option>Отошел</option>
-                                                <option>Не беспокоить</option>
+                                                <?
+                                                foreach ($selected as $item => $key) { ?>
+                                                    <option <?if($key == $user['status']){ echo 'selected'; }?> > <?= $key ?> </option>
+                                                <? } ?>
                                             </select>
                                         </div>
                                     </div>
