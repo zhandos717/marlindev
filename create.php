@@ -13,7 +13,6 @@ if ($_FILES['file']) {
     }
     $_POST['avatar'] = $upload_dir;
 }
-    $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 if (create_user($_POST)) {
     set_flash_message('success', 'Профиль успешно добавлен.');
 };
