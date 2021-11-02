@@ -49,6 +49,16 @@ if (is_not_logged_in()) {
                 <i class='subheader-icon fal fa-plus-circle'></i> Добавить пользователя
             </h1>
         </div>
+        <? if (isset($_SESSION['success'])) : ?>
+            <div class="alert alert-success">
+                <strong>Уведомление!</strong> <span><? display_flash_message('success') ?></span>
+            </div>
+        <? endif;
+        if (isset($_SESSION['error'])) : ?>
+            <div class="alert alert-danger text-dark" role="alert">
+                <strong>Уведомление!</strong> <span><? display_flash_message('error') ?></span>
+            </div>
+        <? endif; ?>
         <form action="create.php" enctype="multipart/form-data" method="POST">
             <div class="row">
                 <div class="col-xl-6">

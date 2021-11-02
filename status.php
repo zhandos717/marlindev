@@ -65,7 +65,7 @@ $user = get_user_by_id($_GET['id']);
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
                                             <select class="form-control" name="status" id="example-select">
-                                                <option><?= $user['status'] ?></option>
+                                                <? if(isset($user['status'])): ?> <option><?= $user['status'] ?></option> <?endif;?>
                                                 <option>Онлайн</option>
                                                 <option>Отошел</option>
                                                 <option>Не беспокоить</option>

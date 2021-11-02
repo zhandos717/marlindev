@@ -3,6 +3,10 @@ include_once 'functions/main.php';
 include_once 'functions/create_user.php';
 include_once 'functions/upload_image.php';
 
+if (get_user_by_email($_POST['email'])) {
+    set_flash_message('error', 'Этот эл. адрес уже занят другим пользователем.');
+    redirect_to('create_user');
+}
 if ($_FILES['file']) {
     $file_extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
     $upload_dir = 'public/upload/user-' . $_POST['id'] . '.' . $file_extension;
