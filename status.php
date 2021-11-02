@@ -6,9 +6,9 @@ if (is_not_logged_in()) {
 $user = get_user_by_id($_GET['id']);
 
 $selected = [
-    'Онлайн',
-    'Отошел',
-    'Не беспокоить'
+    'online'=>'Онлайн',
+    'departed' => 'Отошел',
+    'not disturb' => 'Не беспокоить'
 ];
 
 
@@ -74,8 +74,8 @@ $selected = [
                                             <label class="form-label" for="example-select">Выберите статус</label>
                                             <select class="form-control" name="status" id="example-select">
                                                 <?
-                                                foreach ($selected as $item => $key) { ?>
-                                                    <option <?if($key == $user['status']){ echo 'selected'; }?> > <?= $key ?> </option>
+                                                foreach ($selected as $key  => $val) { ?>
+                                                    <option value="<?= $key?>" <?if($key == $user['status']){ echo 'selected'; }?> > <?= $val ?> </option>
                                                 <? } ?>
                                             </select>
                                         </div>
