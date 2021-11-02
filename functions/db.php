@@ -20,7 +20,6 @@
  * @param array $params
  * @return  mixed
  */
-
     function query(string $sql, array $params)
     {
         $pdo = dbh();
@@ -38,5 +37,27 @@
         $stmt->execute();
         return $stmt;
     }
+    /**
+     * Description: Запись в базу данных
+     * @param string $table
+     * @param array $params
+     * @return  mixed
+     */
+    function update_by_id(string $table, array $params){
+        
+        
+        $array = $params;
+        unset($array['id']);
 
+        for($i=0; $i > count($array); $i++  ){
+
+        }
+
+        $sql = "UPDATE $table
+                SET column1 = value1, column2 = value2, ...
+                WHERE id=:id";
+
+
+        query($sql,$params);
+    }
 ?>

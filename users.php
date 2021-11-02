@@ -1,18 +1,10 @@
 <?php
 include_once 'functions/main.php';
-<<<<<<< HEAD
 if (is_not_logged_in()) {
     redirect_to('page_login');
 }
 $users = get_users();
 ?>
-=======
-  if(is_not_logged_in()){
-    redirect_to('login');
-  }
-?>
-
->>>>>>> bad6d801359c0453838828296ab7354d35e27d04
 <!DOCTYPE html>
 <html lang="en">
 <head>
