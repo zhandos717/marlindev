@@ -8,7 +8,7 @@ $user = get_user_by_id($_GET['id']);
 $selected = [
     'online'=>'Онлайн',
     'departed' => 'Отошел',
-    'not disturb' => 'Не беспокоить'
+    'not_disturb' => 'Не беспокоить'
 ];
 
 
